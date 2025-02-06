@@ -1,7 +1,15 @@
 import React from "react";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  FlatList,
+} from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import Colors from "./Colors";
+import tempData from "./tempData";
+import TodoList from "./components/TodoList";
 
 export default function App() {
   return (
@@ -18,6 +26,15 @@ export default function App() {
           <AntDesign name="plus" size={16} color={Colors.blue} />
         </TouchableOpacity>
         <Text style={styles.add}>Add List</Text>
+      </View>
+      <View style={{ height: 275, paddingLeft: 32 }}>
+        <FlatList
+          data={tempData}
+          keyExtractor={(item) => item.name}
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          renderItem={({ item }) => <TodoList list={item} />}
+        />
       </View>
     </View>
   );
