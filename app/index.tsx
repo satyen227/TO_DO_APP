@@ -11,6 +11,7 @@ import { AntDesign } from "@expo/vector-icons";
 import Colors from "./Colors";
 import tempData from "./tempData";
 import TodoList from "./components/TodoList";
+import AddListModal from "./components/AddListModal";
 
 export default class App extends React.Component {
   state = {
@@ -24,10 +25,12 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Modal animationType="slide" visible={this.state.addTodoVisible}>
-          <View>
-            <Text>Modal</Text>
-          </View>
+        <Modal
+          animationType="slide"
+          visible={this.state.addTodoVisible}
+          onRequestClose={() => this.toggleAddTodoModal()}
+        >
+          <AddListModal closeModal={() => this.toggleAddTodoModal} />
         </Modal>
         <View style={{ flexDirection: "row" }}>
           <View style={styles.divider} />
