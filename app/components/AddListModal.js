@@ -9,26 +9,44 @@ import {
 import React, { Component } from "react";
 import { AntDesign } from "@expo/vector-icons";
 import Colors from "../Colors";
+import tempData from "../tempData";
 
 export default class AddListModal extends Component {
   backgroundColors = [
     Colors.blue,
-    Colors.lightBlue,
-    Colors.darkBlue,
-    Colors.teal,
     Colors.green,
-    Colors.lightGreen,
     Colors.purple,
     Colors.darkPurple,
     Colors.red,
     Colors.pink,
     Colors.orange,
-    Colors.yellow,
+    Colors.lightBlue,
   ];
   state = {
     name: "",
-    color: Colors.blue,
+    color: this.backgroundColors[0],
   };
+  createToDo = () => {
+    const { name, color } = this.state;
+    tempData.push({
+      name,
+      color,
+      todos: [],
+    });
+    this.setState({ name: "" });
+    this.props.closeModal();
+  };
+  renderColors() {
+    return this.backgroundColors.map((color) => {
+      return (
+        <TouchableOpacity
+          key={color}
+          style={[styles.colorSelect, { backgroundColor: color }]}
+          onPress={() => this.setState({ color })}
+        />
+      );
+    });
+  }
   render() {
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding">
@@ -43,10 +61,21 @@ export default class AddListModal extends Component {
           <TextInput
             style={styles.input}
             placeholder="List Name?"
-            onChangeText={() => this.setState({ name: text })}
+            placeholderTextColor={Colors.gray}
+            onChangeText={(text) => this.setState({ name: text })}
           />
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              marginTop: 12,
+            }}
+          >
+            {this.renderColors()}
+          </View>
           <TouchableOpacity
-            style={[styles.create, { backgroundColor: Colors.blue }]}
+            onPress={this.createToDo}
+            style={[styles.create, { backgroundColor: this.state.color }]}
           >
             <Text style={{ color: Colors.white, fontWeight: "600" }}>
               Create!
@@ -86,5 +115,10 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     alignItems: "center",
     justifyContent: "center",
+  },
+  colorSelect: {
+    width: 30,
+    height: 30,
+    borderRadius: 4,
   },
 });

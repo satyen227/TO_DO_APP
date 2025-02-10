@@ -5,7 +5,7 @@ export default tempData = [
     todos: [
       {
         title: "Book Flight",
-        completed: false,
+        completed: true,
       },
       {
         title: "Passport Check",
@@ -17,7 +17,7 @@ export default tempData = [
       },
       {
         title: "Pack Luggage",
-        completed: false,
+        completed: true,
       },
     ],
   },
@@ -31,7 +31,7 @@ export default tempData = [
       },
       {
         title: "Buy Eggs",
-        completed: true,
+        completed: false,
       },
       {
         title: "Buy Bread",
@@ -49,7 +49,7 @@ export default tempData = [
     todos: [
       {
         title: "Buy Gift",
-        completed: false,
+        completed: true,
       },
       {
         title: "Order Cake",

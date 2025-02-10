@@ -30,7 +30,7 @@ export default class App extends React.Component {
           visible={this.state.addTodoVisible}
           onRequestClose={() => this.toggleAddTodoModal()}
         >
-          <AddListModal closeModal={() => this.toggleAddTodoModal} />
+          <AddListModal closeModal={() => this.toggleAddTodoModal()} />
         </Modal>
         <View style={{ flexDirection: "row" }}>
           <View style={styles.divider} />
